@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        h2,
+        h4 {
+            text-align: center;
+        }
+
+        h3,
+        h5,
+        h6 {
+            color: #b689b0;
+            animation: heading 1s ease-in;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        h5 {
+            font-size: 16px;
+        }
+
+        @keyframes heading {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .resume {
+            margin: 10px auto;
+            padding: 30px;
+            width: 750px;
+            height: 1060px;
+            background-color: #fff;
+        }
+
+        .left {
+            float: left;
+            width: 35%;
+            height: 100%;
+        }
+
+        .right {
+            float: left;
+            padding-top: 30px;
+            width: 64%;
+            height: 96%;
+            border-left: 2px solid #ccc;
+        }
+
+        .mytitle {
+            width: 90%;
+        }
+
+        .mytitle h5 {
+            /* 上 左右 下 */
+            margin: 10px 0 30px;
+            text-align: center;
+        }
+
+        .photo {
+            margin: 15px auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ccc;
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+        }
+
+        .subbox {
+            position: relative;
+            margin: 0 auto 20px;
+            width: 90%;
+        }
+
+        .subbox::before,
+        .subbox::after {
+            content: "";
+            position: absolute;
+            top: 11px;
+            width: 25%;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+        .subbox::before {
+            left: 0px;
+        }
+
+        .subbox::after {
+            right: 0px;
+        }
+
+        .subbox p,
+        .subbox li {
+            margin: 20px 0 5px;
+            color: #7f7f7f;
+            font-size: 15px;
+        }
+
+        .subbox li {
+            margin-left: 25px;
+        }
+
+        .subbox p:hover,
+        .subbox li:hover {
+            color: #fd5f00;
+            transition: .4s;
+        }
+
+        .subbox .p-right {
+            float: right;
+            margin-top: 15px;
+        }
+
+        .subbox p:first-of-type {
+            /* 第一个p(在右边的), 调整上外边距让它和左边的p一样高 */
+            margin-top: 20px;
+        }
+
+        .subbox .skill,
+        span {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        .subbox .skill {
+            width: 95%;
+            background-color: rgb(231, 231, 231);
+        }
+
+        .subbox span {
+            display: block;
+            width: 100%;
+            background-color: #b689b0;
+            animation: skill 2s ease-in;
+        }
+
+        @keyframes skill {
+
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: width;
+            }
+        }
+
+
+        .info {
+            position: relative;
+            margin: 20px 0 50px;
+        }
+
+        .info h6 {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            font-size: 16px;
+        }
+
+        .subbox span,
+        h3,
+        h5,
+        h6 {
+            /* 暂停动画 */
+            animation-play-state: paused;
+        }
+
+        .move {
+            /* 开始动画 */
+            animation-play-state: running !important;
+        }
+
+
+        /* 移动端 */
+        @media(max-device-width:800px) {
+            .resume {
+                width: 100%;
+                height: 950px;
+            }
+        }
+
+        @media(max-device-width:500px) {
+            body {
+                background-color: #fff;
+            }
+
+            .resume {
+                box-sizing: border-box;
+                height: 100%;
+            }
+
+            .mytitle {
+                margin: auto;
+            }
+
+            .left {
+                width: 100%;
+            }
+
+            .right {
+                margin-top: 0 auto;
+                width: 100%;
+                border: 0;
+            }
+        }
+
+        .color {
+            color: #3DA8AA;
+        }
+
+        .subbox .bgc {
+            background-color: #3DA8AA;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume">
+        <!-- 左边 -->
+        <div class="left">
+            <div class="mytitle">
+                <div class="photo">
+                    <img alt="" src="assets/images/lele.jpg" title="我的猫">
+                </div>
+                <h2>个人简历</h2>
+                <h5>求职意向：前端开发</h5>
+            </div>
+            <div class="subbox">
+                <h4>个人信息</h4>
+                <p class="p-right">性别：女</p>
+                <p>姓名: 李夏贤</p>
+                <p class="p-right">生日:1996-8-6</p>
+                <p>籍贯: 广西</p>
+                <p>电话: 182-6084-4520</p>
+                <p>邮箱: 835273072@qq.com</p>
+                <p>住址: 广东深圳宝安区</p>
+            </div>
+            <div class="subbox">
+                <h4>专业技能</h4>
+                <p>HTML+CSS+JS</p>
+                <div class="skill"><span style="width: 80%;"></span></div>
+                <p>Vue.js</p>
+                <div class="skill"><span style="width: 70%;"></span></div>
+                <p>JQuery</p>
+                <div class="skill"><span style="width: 70%;"></span></div>
+                <p>PS+AI</p>
+                <div class="skill"><span style="width: 90%;"></span></div>
+            </div>
+            <div class="subbox">
+                <h4>个人能力</h4>
+                <p>逻辑思维</p>
+                <div class="skill"><span style="width: 75%;"></span></div>
+                <p>专注力</p>
+                <div class="skill"><span style="width: 65%;"></span></div>
+                <p>创造力</p>
+                <div class="skill"><span style="width: 80%;"></span></div>
+            </div>
+            <div class="subbox">
+                <h4>兴趣爱好</h4>
+                <p>猫咪 &nbsp; 游戏</p>
+            </div>
+        </div>
+
+        <!-- 右边 -->
+        <div class="right">
+            <div class="subbox">
+                <h4>工作经历</h4>
+                <div class="info">
+                    <h3>广西科域科技公司</h3>
+                    <h5>软件测试人员</h5>
+                    <h6>2018.8-2019.5</h6>
+                    <ul>
+                        <li>根据需求文档，对公司软件制品进行黑盒测试</li>
+                        <li>编写并梳理测试用例，协助开发人员进行问题定位与修复</li>
+                    </ul>
+                </div>
+                <div class="info">
+                    <h3>广西荣而为公司</h3>
+                    <h5>电商美工</h5>
+                    <h6>2019.10-2020.5</h6>
+                    <ul>
+                        <li>商品图的处理与制作，网店装修，宣传页面的配色，布局</li>
+                        <li>店铺宣传视频的录制，剪辑等工作</li>
+                    </ul>
+                </div>
+                <div class="info">
+                    <h3>深圳宝天漫电子</h3>
+                    <h5>电商美工</h5>
+                    <h6>2020.7-2020.10</h6>
+                    <ul>
+                        <li>产品包装，产品详情页的构思与设计</li>
+                        <li>店铺宣传视频剪辑工作</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="subbox">
+                <h4>教育背景</h4>
+                <div class="info">
+                    <h3>广西师范学院</h3>
+                    <p><strong>信息管理与信息系统 &nbsp; 本科</strong></p>
+                    <h6>2014.9-2018.6</h6>
+                    <p></p>
+                </div>
+            </div>
+            <div class="subbox">
+                <h4>自我评价</h4>
+                <p>一名精通平面设计的前端设计师，兼具理性思维和对设计的理解</p>
+                <p>对页面的配色，布局，交互性有主见和掌控能力，严谨，高效，创造力是我的关键词</p>
+                <p>掌握主流前端开发知识，希望能够得到一个实现自我的机会</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(function () {
+            // JQuery
+            var pageHeight = $(window).height(); //窗口高
+            var scroll = 0; // 网页卷去的头部，先=0
+
+            addMove();
+            $(window).scroll(function () {
+                scroll = $(this).scrollTop();
+                addMove();
+            });
+
+            // var color = '#b689b0';
+            $('.photo').click(function () {
+                $('h3,h5,h6').toggleClass('color');
+                $('span').toggleClass('bgc');
+
+            });
+
+            function addMove() {
+                // 添加move类，这个是用来控制动画的
+                $('h3,h5,h6').each(function (i, ele) {
+                    var top = $(this).offset().top;
+                    if (top <= pageHeight + scroll) {
+                        $(this).addClass('move');
+                    }
+                });
+                $('span').each(function (i, ele) {
+                    var top = $(this).offset().top;
+                    if (top <= pageHeight + scroll) {
+                        $(this).addClass('move');
+                    }
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>

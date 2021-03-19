@@ -1,0 +1,271 @@
+---
+layout: post
+title:  "321购物节"
+date:   2020-03-20 03:08:26 +0800
+categories: jekyll update
+---
+
+# Ajax笔记
+
+[toc]
+
+form简单示例
+
+```html
+<form action="远程服务器地址" method="POST">
+        <input type="file" name="upFile"><br>
+        <input type="submit" value="上传"><br>
+</form>
+```
+
+## XHR对象GET请求
+
+https://www.w3school.com.cn/ajax/ajax_xmlhttprequest_create.asp
+
+1. 创建一个异步对象
+
+2. 设置请求方式和请求地址
+
+3. 发送请求
+
+   中断请求：`xmlhttp.about();`
+
+4. 监听状态的变化
+
+5. 处理返回的结果
+
+```javascript
+function(){
+        //1. 创建一个异步对象
+        var xmlhttp = new XMLHttpRequest();
+    
+        //2. 设置请求方式和请求地址 xmlhttp.open("GET","test1.txt",true);
+        //      method：请求的类型；GET 或 POST
+        //      url：文件在服务器上的位置
+        //      async：true（异步）或 false（同步）
+        xmlhttp.open("GET", "ajax-get1.php", true);
+    
+        //3. 发送请求
+        xmlhttp.send();
+    
+        //4. 监听状态的变化
+        xmlhttp.onreadystatechange = function () {
+            // readyState属性==4表示请求已完成，且响应已就绪
+            if (xmlhttp.readyState === 4) {
+                if (xmlhttp.status >= 200 && xmlhttp.status <= 300 
+                    || xmlhttp.status === 304) {
+                    
+                            //5. 处理返回的结果
+                            console.log("接收到数据");
+                        } else {
+                            console.log("没有接到");
+                        }
+                    }
+                }
+}
+
+```
+
+
+
+## POST请求
+
+参考get请求的步骤1-5
+
+`open()`和`send()`之间 使用使用 `setRequestHeader()` 来添加 HTTP 头，也就是加中间这一句
+
+`send()`中参数传数据，格式依旧是： key=value&key=value
+
+```javascript
+xmlhttp.open("POST","ajax_test.asp",true);
+// 加一句
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("fname=Bill&lname=Gates");
+```
+
+
+
+## IE浏览器问题的解决
+
+1. 低版本IE浏览器可能不支持XHR对象
+
+   解决：w3c的代码
+
+   ```javascript
+   var xmlhttp;
+   if (window.XMLHttpRequest)
+     {// code for IE7+, Firefox, Chrome, Opera, Safari
+     xmlhttp=new XMLHttpRequest();
+     }
+   else
+     {// code for IE6, IE5
+     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+     }
+   ```
+
+   
+
+2. IE中的缓存问题，通过Ajax发送get请求，IE认为同一个URL只有一个结果
+
+   解决：参考百度的解决方法，拼接随机数。  
+
+   URL后 `?t=()`   ( )内填随机数
+
+   ```javascript
+   var xmlhttp;
+   // 1. 随机数 Math.random()
+   // 2. 时间戳 new Date().getTime()
+   xmlhttp.open("get","1.txt?t="+(new Date().getTime()));
+   ```
+
+## AJAX响应
+
+XMLHttpRequest 对象的2个属性
+
+1. responseText ： 获得字符串形式的响应数据
+2. responseXML ：获得 XML 形式的响应数据
+
+
+
+PHP超全局变量
+
+1. $_POST   ：获取前端由post传的数据
+
+2. $_GET  ：获取前端由get传的数据
+
+3. $_FILES ：获取前端传的文件
+
+ 
+
+## XML
+
+xml的格式：
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<abc> 自定标签</abc>
+```
+
+后端：
+
+```php
+<?php
+   //返回xml数据要在php文件顶部设置
+   header("Content-type:text/xml;charset=utf-8");
+   //要加这个方法
+   echo file_get_contents("info.xml");
+```
+
+前端：
+
+```javascript
+var res = xhr.responseXML;
+ console.log(res.querySelector("name".innHTML));
+ console.log(res.querySelector("age".innHTML));
+```
+
+
+
+## JSON
+
+JSON 是 JS 对象的字符串表示法，它使用文本表示一个 JS 对象的信息，本质是一个字符串
+
+JSON 和 JS 对象互转：
+
+​    JSON字符串 -> JS对象:  ` JSON.parse() `
+
+​    非标准JSON字符串 -> JS对象:  `eval() `    （非标准的每个属性和值都没有引号，字符串使用eval()方法要在参数前后拼接小括号）`eval("("+str+")")`
+
+​    JS对象 -> JSON字符串: ` JSON.stringify()`
+
+格式：
+
+```json
+{
+    "name":"cola",
+    "age":1
+}
+```
+
+后端：
+
+```php
+<?php
+   //也要加这个方法
+   echo file_get_contents("json.txt");
+```
+
+前端：
+
+```javascript
+var str = xhr.responseText;
+var obj = JSON.parse(str);
+console.log(abj.name);
+console.log(abj.age);
+```
+
+
+
+## Cookie
+
+会话跟踪技术，将网页端数据保存在浏览器中。（服务端session）
+
+存： 
+
+```javascript
+document.cookie = "age=33;";
+document.cookie = "age=33;path=/;"; //保存到根路径
+document.cookie = "age=33;path=/;domin=it666;"; //保存到根域名 （完整形式）
+```
+
+取
+
+```
+document.cookie
+```
+
+删除： 把时间设置成过期
+
+生命周期：默认情况下，一次会话（关闭浏览器会清空）
+
+作用范围：同一个浏览器的同一个路径
+
+设置过期时间 `expires`
+
+```javascript
+var d = new Date();
+d.setDate(d.getDate()+1); //加一天
+document.cookie = "age=33;expires="+date.toGMTString()+";";
+```
+
+注意点：
+
+​    1. 不能一次设置多条数据
+
+​    2. 有大小和个数的限制，不同的浏览器有不同的限制
+
+
+
+## hash
+
+```javascript
+window.location.hash = 2
+```
+
+```javascript
+window.location.hash.substring(1)
+```
+
+
+
+
+
+## 和风天气相关
+
+API地址：https://devapi.qweather.com
+
+Public ID：**HE2103022332051245**
+
+ Key：e47439514b1743a7a114901d338b0945
+
+https://devapi.qweather.com/v7/weather/now?location=101280601&key=e47439514b1743a7a114901d338b0945
