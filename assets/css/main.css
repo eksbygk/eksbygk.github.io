@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+html {
+    height: 100%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #393E46;
+}
+
+@font-face {
+    font-family: CascadiaMono;
+    src: url(/assets/font/CascadiaMono.ttf);
+}
+
+/* 1. header */
+header {
+    /* position:sticky;
+    position: -webkit-sticky;
+    top: 10px; */
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background-color:#222831;
+    z-index: 1;
+}
+
+.header-active {
+  position: fixed;
+  top: 0;
+  /* height: 80px;
+  transition: 1s; */
+}
+
+.logo {
+    float: left;
+    margin-left: 100px;
+    width: 150px;
+}
+
+.logo h2 {
+    color: #fff;
+    font-size: 30px;
+    font-family: CascadiaMono;
+}
+
+header nav {
+    float: right;
+    margin-right: 100px;
+}
+
+header nav a {
+    padding: 35px 35px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+}
+
+header nav a:hover {
+    color: #FD7013;
+    transition: .3s;
+}
+
+.current {
+    color: #FD7013;
+    font-weight: 700;
+}
+
+/* 2.banner */
+.banner {
+    flex: 0 0 auto;
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-image:radial-gradient( #fff,#EEEEEE);
+}
+
+.banner img {
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translate(0,-50%);
+    height:70%;
+}
+
+.banner h1 {
+    position: absolute;
+    left: 15%;
+    bottom: 50%;
+    font-size: 120px;
+    font-family: CascadiaMono;
+    color:#0D0C22;
+}
+
+.banner h2{
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    font-size: 40px;
+    font-family: CascadiaMono;
+    color:#0D0C22;
+}
+
+/* 3.内容 */
+.wrap {
+    /* flex: 1; */
+    margin: 0 auto;
+    width: 1140px;
+    /* height: 600px;  */
+    /* background-color:#fff; */
+}
+
+.page-content {
+    flex: 1 0 auto;
+    /* min-height: 100%; */
+}
+
+.box {
+    box-sizing: content-box;
+    margin: 20px 0;
+    padding: 30px;
+    width: 100%;
+    height: 350px;
+    background-color: rgb(255, 255, 255, .1);
+    border-radius: 10px;
+    /* box-shadow:0px 0px 3px 4px rgb(255, 255, 255,.1) */
+}
+
+/* 4.fotter */
+footer {
+    font-family: CascadiaMono;
+    flex: 0 0 auto;
+    height: 50px;
+    padding: 30px;
+    border-top: 1px solid #ccc;
+    background-color: #393E46;
+    color: #ccc;
+}
