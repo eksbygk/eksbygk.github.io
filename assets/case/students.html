@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #e79686;
+        }
+
+        #app {
+            width: 500px;
+            margin: 50px auto;
+        }
+
+
+        form>input {
+            margin-bottom: 10px;
+            width: 100px;
+            height: 25px;
+            outline: none;
+        }
+
+        #app .btn {
+            float: right;
+            margin: 2px;
+            width: 70px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table th,
+        td {
+            width: 20%;
+            height: 30px;
+            border: 1px solid #e79686;
+        }
+
+        table input {
+            width: 90%;
+            height: 25px;
+            /* border: none; */
+            outline: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <form v-show="isShow">
+            <input type="text" placeholder="输入学号" v-model="person.id">
+            <input type="text" placeholder="输入姓名" v-model="person.name">
+            <input type="text" placeholder="输入分数" v-model="person.score">
+            <input type="button" value="查询" class="btn" @click.prevent="query">
+            <input type="button" value="提交" class="btn" @click.prevent="insert">
+        </form>
+        <table>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>分数</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(person,index) in persons">
+                <td><input type="text" v-model="person.id" :disabled="isDisabled"></td>
+                <td><input type="text" v-model="person.name" :disabled="isDisabled"></td>
+                <td><input type="text" v-model="person.score" :disabled="isDisabled"></td>
+                <td><input type="text" v-model="time" disabled></td>
+                <td><a href="#" @click.prevent="edit">{{textEdit}}</a>
+                    <a href="#" @click.prevent="del(index)">删除</a><br>
+                    <a href="#" @click.prevent="toggle">更多操作</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                time: Date.now(),
+                isShow: true,
+                isDisabled: true,
+                textEdit: '修改',
+                persons: [{
+                    id: 'a01',
+                    name: '可乐',
+                    score: 70
+                }, {
+                    id: 'a02',
+                    name: '柑橘',
+                    score: 70
+                }, {
+                    id: 'b03',
+                    name: '橘哥',
+                    score: 0
+                }],
+                person: {
+                    id: '',
+                    name: '',
+                    score: ''
+                }
+            },
+            methods: {
+                edit() {
+                    if (this.isDisabled) {
+                        this.textEdit = '完成';
+                    } else {
+                        this.textEdit = '修改';
+                    }
+                    this.isDisabled = !this.isDisabled;
+                },
+                toggle() {
+                    this.isShow = !this.isShow;
+                },
+                del(index) {
+                    this.persons.splice(index, 1);
+                },
+                insert() {
+                    this.persons.push(this.person);
+                    this.person = { id: '', name: '', score: '' }
+                },
+                query() {
+                    let newPersons = this.persons.filter((person) => {
+                        if (person.score == this.person.score) {
+                            return true;
+                        }
+                    });
+                    this.persons = newPersons;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

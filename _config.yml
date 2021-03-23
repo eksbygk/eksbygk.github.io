@@ -1,5 +1,5 @@
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
-title: "Eksbygk的Blog" # the name of your site, e.g. ACME Corp.
+title: "Eks的个人博客" # the name of your site, e.g. ACME Corp.
 collections:
-authors: "Eksbygk"
+authors: "Eks"

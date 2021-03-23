@@ -19,7 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: #393E46;
+    /* background-color: #393E46; */
 }
 
 @font-face {
@@ -29,9 +29,9 @@ body{
 
 /* 1. header */
 header {
-    /* position:sticky;
-    position: -webkit-sticky;
-    top: 10px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     height: 100px;
     line-height: 100px;
@@ -47,8 +47,6 @@ header {
 }
 
 .logo {
-    float: left;
-    margin-left: 100px;
     width: 150px;
 }
 
@@ -56,11 +54,6 @@ header {
     color: #fff;
     font-size: 30px;
     font-family: CascadiaMono;
-}
-
-header nav {
-    float: right;
-    margin-right: 100px;
 }
 
 header nav a {
@@ -89,6 +82,14 @@ header nav a:hover {
     background-image:radial-gradient( #fff,#EEEEEE);
 }
 
+/* .banner::after {
+    content: url(/assets/images/dots.png);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%,0); 
+}*/
+
 .banner img {
     position: absolute;
     right: 15%;
@@ -115,13 +116,14 @@ header nav a:hover {
     color:#0D0C22;
 }
 
-/* 3.内容 */
+/* 3.主要内容 */
 .wrap {
     /* flex: 1; */
     margin: 0 auto;
     width: 1140px;
     /* height: 600px;  */
     /* background-color:#fff; */
+    /* text-align: center; */
 }
 
 .page-content {
@@ -129,15 +131,145 @@ header nav a:hover {
     /* min-height: 100%; */
 }
 
+.index-page {
+    /* background-image: url(/assets/images/bg.png); */
+    background:url(/assets/images/bg.png) repeat-x top;
+}
+
 .box {
-    box-sizing: content-box;
-    margin: 20px 0;
-    padding: 30px;
-    width: 100%;
+    display: flex;
+    position: relative;
+    box-sizing:border-box;
+    margin: 20px auto 30px;
+    width: 80%;
     height: 350px;
-    background-color: rgb(255, 255, 255, .1);
+    font-size: 20px;
+    /* background-color: #fff; */
+    color: #333;
+    border-radius: 5px;
+    box-shadow:1px 1px 5px 6px rgb(0, 0, 0,.1);
+    /* z-index: -1; */
+    overflow: hidden;
+}
+
+.box::after {
+    position: absolute;
+    top: 120px;
+    left: -50px;
+    /* transform: translate(-120%,50%);  */
+    content: "";
+    /* background-color: rgb(253, 112, 19,.1); */
+    border:50px solid rgb(253, 112, 19,.1);
+    width: 280px;
+    height: 280px;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.info {
+    /* 主轴子元素排列 */
+    justify-content: center;
+    /* 侧轴子元素排列（单行） */
+    align-items: center;
+}
+
+.info .left p {
+    margin: 15px 0;
+}
+
+.info .pic {
+    margin-left: 20px;
+    width: 250px;
+    height: 250px;
     border-radius: 10px;
-    /* box-shadow:0px 0px 3px 4px rgb(255, 255, 255,.1) */
+    overflow: hidden;
+    
+}
+
+.info .pic img {
+    width: 100%;
+}
+
+.skill {
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    font-size: 14px;
+}
+
+.skill .bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    height: 180px;
+    /* background-color: pink; */
+}
+
+.skill .subbox {
+    position: relative;
+    text-align: center;
+}
+
+.skill p {
+    margin: 10px;
+}
+
+.skill .cup {
+    position: relative;
+    width: 120px;
+    height: 100px;
+    border: 5px solid #333;
+    /* background-color: skyblue; */
+    border-radius: 8px 8px 40% 40%;
+    overflow: hidden;
+}
+
+.skill .subbox span {
+    position: absolute;
+    left: -50px;
+    bottom: 0;
+    display: block;
+    width: 150%;
+    height: 80%;
+    border-radius: 70% 0 0 0 ;
+    background-color: #FD7013;
+    z-index: -1;
+    animation: juice 2s ease-in;
+    /* 暂停动画 */
+    animation-play-state: paused;
+}
+
+.move {
+    /* 开始动画 */
+    animation-play-state: running !important;
+}
+
+@keyframes juice {
+            0% {
+                left: 0;
+                height: 0;
+            }
+
+            100% {
+                left: left;
+                height: witch;
+            }
+        }
+
+.skill .bottom .subbox::after{
+    display: block;
+    content: "";
+    position: absolute;
+    right: -25px;
+    bottom: 40px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    border-top: 8px solid #333;
+    border-right: 8px solid #333;
+    transform: rotate(45deg);
 }
 
 /* 4.fotter */
