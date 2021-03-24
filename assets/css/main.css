@@ -19,7 +19,6 @@ body{
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* background-color: #393E46; */
 }
 
 @font-face {
@@ -29,8 +28,12 @@ body{
 
 /* 1. header */
 header {
+    box-sizing: border-box;
+    padding: 0 100px;
+    position: relative;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100px;
@@ -39,21 +42,50 @@ header {
     z-index: 1;
 }
 
-.header-active {
+/* .header-active {
   position: fixed;
   top: 0;
-  /* height: 80px;
-  transition: 1s; */
-}
+} */
 
 .logo {
     width: 150px;
+    /* margin-left: 100px; */
 }
 
 .logo h2 {
     color: #fff;
     font-size: 30px;
     font-family: CascadiaMono;
+}
+
+/* header nav {
+    margin-right: 100px;
+} */
+
+header .nav-btn {
+    display: none;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    /* line-height: 40px;
+    text-align: center; */
+}
+
+header .nav-btn::after {
+    content: "+";
+    position: absolute;
+    top: -32px;
+    left: 9px;
+    color: #fff;
+    font-size: 30px;
+}
+
+.rotate{
+     /* 还需要修改 */
+    transform:rotate(360deg);
+    transition: 1s;
 }
 
 header nav a {
@@ -82,14 +114,6 @@ header nav a:hover {
     background-image:radial-gradient( #fff,#EEEEEE);
 }
 
-/* .banner::after {
-    content: url(/assets/images/dots.png);
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translate(-50%,0); 
-}*/
-
 .banner img {
     position: absolute;
     right: 15%;
@@ -105,6 +129,18 @@ header nav a:hover {
     font-size: 120px;
     font-family: CascadiaMono;
     color:#0D0C22;
+    width: 3ch;
+    overflow: hidden;
+    animation: 2s typing steps(7,jump-none) forwards;
+}
+
+@keyframes typing {
+    from{
+        width: 1ch;
+    }
+    to {
+        width: 7ch;
+    }
 }
 
 .banner h2{
@@ -118,21 +154,15 @@ header nav a:hover {
 
 /* 3.主要内容 */
 .wrap {
-    /* flex: 1; */
     margin: 0 auto;
     width: 1140px;
-    /* height: 600px;  */
-    /* background-color:#fff; */
-    /* text-align: center; */
 }
 
 .page-content {
     flex: 1 0 auto;
-    /* min-height: 100%; */
 }
 
 .index-page {
-    /* background-image: url(/assets/images/bg.png); */
     background:url(/assets/images/bg.png) repeat-x top;
 }
 
@@ -144,11 +174,9 @@ header nav a:hover {
     width: 80%;
     height: 350px;
     font-size: 20px;
-    /* background-color: #fff; */
     color: #333;
     border-radius: 5px;
     box-shadow:1px 1px 5px 6px rgb(0, 0, 0,.1);
-    /* z-index: -1; */
     overflow: hidden;
 }
 
@@ -156,9 +184,7 @@ header nav a:hover {
     position: absolute;
     top: 120px;
     left: -50px;
-    /* transform: translate(-120%,50%);  */
     content: "";
-    /* background-color: rgb(253, 112, 19,.1); */
     border:50px solid rgb(253, 112, 19,.1);
     width: 280px;
     height: 280px;
@@ -203,7 +229,6 @@ header nav a:hover {
     align-items: center;
     width: 90%;
     height: 180px;
-    /* background-color: pink; */
 }
 
 .skill .subbox {
@@ -220,7 +245,6 @@ header nav a:hover {
     width: 120px;
     height: 100px;
     border: 5px solid #333;
-    /* background-color: skyblue; */
     border-radius: 8px 8px 40% 40%;
     overflow: hidden;
 }
@@ -233,7 +257,7 @@ header nav a:hover {
     width: 150%;
     height: 80%;
     border-radius: 70% 0 0 0 ;
-    background-color: #FD7013;
+    background-color: rgb(253, 112, 19,.7);
     z-index: -1;
     animation: juice 2s ease-in;
     /* 暂停动画 */
@@ -253,7 +277,7 @@ header nav a:hover {
 
             100% {
                 left: left;
-                height: witch;
+                height: height;
             }
         }
 
@@ -281,4 +305,110 @@ footer {
     border-top: 1px solid #ccc;
     background-color: #393E46;
     color: #ccc;
+}
+
+@media(max-width:960px) {
+    header nav {
+        display: none;
+        position: absolute;
+        top: 110px;
+        width: 200px;
+        right: 5%;
+        /* height: 400px; */
+        background-color: #222831;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    header nav a {
+        height: 60px;
+        line-height: 60px;
+        padding: 0;
+        margin: auto;
+        display: block;
+    }
+
+    header nav a:hover {
+        background-color: #393E46;
+    }
+
+    header .nav-btn {
+        display: block;
+    }
+
+    /* 2. banner */
+    .banner img {
+        right: 50%;
+        transform: translate(50%,-30%);
+        height:60%;
+    }
+
+    .banner h1 {
+        left: 50%;
+        bottom: 60%;
+        transform: translate(-50%,0)
+    }
+
+    /* 3. 主要内容 */
+    .wrap {
+        width: 90%;
+    }
+    .wrap .box{
+        padding: 35px;
+        width: 90%;
+        height: auto;
+    }
+
+    .info .pic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .info h2 {
+        font-size: 22px;
+    }
+
+    .info .left p {
+        margin: 5px 0;
+        font-size: 18px;
+    }
+
+    .skill .bottom {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 60%;
+        height: auto;
+    }
+
+}
+
+@media(max-width:500px) {
+    header {
+        padding: 0 30px;
+    }
+    .banner {
+        height: 400px;
+    }
+    .banner h1 {
+        font-size: 60px;
+    }
+
+    /* 3. 主要内容 */
+    .info {
+        flex-direction: column-reverse;
+    }
+
+    .info .pic {
+        margin: 0;
+    }
+
+    .info h2 {
+        font-size: 20px;
+        margin: 15px 0;
+    }
+
+    .info .left p {
+        font-size: 16px;
+    }
 }

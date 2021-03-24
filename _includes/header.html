@@ -2,6 +2,7 @@
     <div class="logo">
         <h2>{{ site.authors }}</h2>
     </div>
+    <div class="nav-btn"></div>
     <nav>
         {% for item in site.data.navigation %}
         <a href="{{ item.link }}" {% if page.url==item.link %}class="current" {% endif %}>{{ item.name }}</a>

@@ -18,6 +18,14 @@ $(function () {
             }
         });
     }
+
+    $(".nav-btn").click(function () {
+        $(this).toggleClass("rotate");
+        $("header nav").slideToggle();
+    });
+    $("header nav").click(function () {
+        $(this).hide();
+    })
     // $('.btn-slider').click(function () {
     //     $('.banner').slideToggle();
     //     $(this).css("buttom", "-30")
