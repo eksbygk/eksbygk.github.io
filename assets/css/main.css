@@ -17,6 +17,7 @@ html {
 
 body{
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
     height: 100%;
 }
@@ -32,7 +33,7 @@ header {
     padding: 0 100px;
     position: relative;
     display: flex;
-    /* justify-content: space-around; */
+    min-height: 100px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -74,11 +75,15 @@ header .nav-btn {
 }
 
 header .nav-btn::after {
-    content: "+";
+    content: "";
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
     position: absolute;
-    top: -32px;
-    left: 9px;
-    color: #fff;
+    top: 6px;
+    left: 6px;
+    background-color: #fff;
     font-size: 30px;
 }
 
@@ -129,17 +134,21 @@ header nav a:hover {
     font-size: 120px;
     font-family: CascadiaMono;
     color:#0D0C22;
-    width: 3ch;
+    width: 7ch;
     overflow: hidden;
     animation: 2s typing steps(7,jump-none) forwards;
+    /* animation: 2s typing; */
 }
 
 @keyframes typing {
     from{
         width: 1ch;
+        /* opacity: 0; */
     }
     to {
         width: 7ch;
+        /* width: 100%; */
+        /* opacity: 1; */
     }
 }
 
@@ -168,6 +177,7 @@ header nav a:hover {
 
 .box {
     display: flex;
+    display: -webkit-flex;
     position: relative;
     box-sizing:border-box;
     margin: 20px auto 30px;
@@ -225,6 +235,7 @@ header nav a:hover {
 
 .skill .bottom {
     display: flex;
+    display: -webkit-flex;
     justify-content: space-around;
     align-items: center;
     width: 90%;
@@ -343,11 +354,11 @@ footer {
         height:60%;
     }
 
-    .banner h1 {
+    /* .banner h1 {
         left: 50%;
         bottom: 60%;
         transform: translate(-50%,0)
-    }
+    } */
 
     /* 3. 主要内容 */
     .wrap {
